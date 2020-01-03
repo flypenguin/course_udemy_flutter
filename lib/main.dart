@@ -7,25 +7,25 @@ void main() {
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var texts = ["A Riddle!", "A Fiddle!", "A Sharmagiddle!"];
-  var cycle = 0;
+class _MyAppState extends State<MyApp> {
+  var _texts = ["A Riddle!", "A Fiddle!", "A Sharmagiddle!"];
+  var _cycle = 0;
 
-  void buttonPressed() {
+  void _buttonPressed() {
     // if we do this:
-    //cycle = (cycle + 1) % texts.length;
+    //_cycle = (_cycle + 1) % _texts.length;
     // ... the text will NOT change!
 
     setState(() {
       // because we place this IN HERE this works.
-      cycle = (cycle + 1) % texts.length;
+      _cycle = (_cycle + 1) % _texts.length;
     });
 
-    print("cycle: $cycle");
+    print("cycle: $_cycle");
   }
 
   @override
@@ -34,10 +34,10 @@ class MyAppState extends State<MyApp> {
         home: Scaffold(
             appBar: AppBar(title: Text('me title!')),
             body: Column(children: [
-              Text(texts[cycle]),
+              Text(_texts[_cycle]),
               RaisedButton(
                 child: Text("PRESS! PRESS!"),
-                onPressed: buttonPressed,
+                onPressed: _buttonPressed,
               )
             ])));
   }
