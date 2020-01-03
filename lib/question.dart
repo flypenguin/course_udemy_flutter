@@ -12,7 +12,7 @@ class Question extends StatelessWidget {
       width: double.infinity,
       margin: EdgeInsets.all(20),
       child: Text(
-        "This is? " + questionText,
+        questionText,
         style: TextStyle(fontSize: 30),
         textAlign: TextAlign.center,
       ),
