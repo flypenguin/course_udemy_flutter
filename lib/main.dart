@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import "./question.dart";
-import "./answer.dart";
+import "./quiz.dart";
 
 void main() {
   runApp(MyApp());
@@ -48,19 +47,10 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: Text('me title!')),
-        body: (_cycle < _questions.length)
-            ? Column(
-                children: [
-                  Question(_questions[_cycle]["question"]),
-                  // functional style
-                  // this returns a list. but we want - like in python - each ITEM
-                  // of the list as a parameter. so basically we want to do
-                  // *(blabla). The DART operator for this is not "*" but "...".
-                  ...(_questions[_cycle]["answers"] as List<String>)
-                      .map((answer) {
-                    return Answer(answer, _buttonPressed);
-                  }).toList()
-                ],
+        body: _cycle < _questions.length
+            ? Quiz(
+                question: _questions[_cycle],
+                handler: _buttonPressed,
               )
             : Center(
                 child: Text("Fertig."),
