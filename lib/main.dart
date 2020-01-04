@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import "./quiz.dart";
+import "./result.dart";
 
 void main() {
   runApp(MyApp());
@@ -57,6 +58,13 @@ class _MyAppState extends State<MyApp> {
     print("score: $_score");
   }
 
+  void _restartQuiz() {
+    setState(() {
+      _cycle = 0;
+      _score = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -67,9 +75,7 @@ class _MyAppState extends State<MyApp> {
                 question: _questions[_cycle],
                 handler: _buttonPressed,
               )
-            : Center(
-                child: Text("Fertig."),
-              ),
+            : QuizResult(restartHandler: _restartQuiz, totalScore: _score),
       ),
     );
   }
