@@ -23,7 +23,12 @@ class MyHomePage extends StatelessWidget {
         middle: Text('Flutter App'),
       ),
       child: SafeArea(
+        // column parameters:
+        //     main axis: top-bottom (for row it's left-right)
+        //     cross axis: left-right (for row it's top-bottom)
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             // one possibility: wrap the Text widget
             Card(
