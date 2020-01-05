@@ -25,10 +25,24 @@ class MyHomePage extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: <Widget>[
-            // card takes the exact size of the child: widget
-            Card(child: Text("card 1")),
-            // so to style this we have to modify the child: format
-            Card(child: Text("card 2")),
+            // one possibility: wrap the Text widget
+            Card(
+              child: Container(
+                child: Text("card 1"),
+                width: double.infinity,
+                height: 100,
+                color: Colors.blue,
+              ),
+            ),
+            // 2nd possibility: wrap card.
+            // you see the difference in coloring and Text placements
+            Container(
+              child: Card(child: Text("card 2")),
+              width: double.infinity,
+              height: 100,
+              color: Colors.red,
+            ),
+            Card(child: Text("card 3")),
           ],
         ),
       ),
