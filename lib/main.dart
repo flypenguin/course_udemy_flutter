@@ -1,85 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import "./quiz.dart";
-import "./result.dart";
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _MyAppState();
-  }
-}
-
-class _MyAppState extends State<MyApp> {
-  var _questions = [
-    {
-      "question": "What is this?",
-      "answers": [
-        {"text": "A Riddle!", "score": 1},
-        {"text": "A Fiddle!", "score": 0},
-        {"text": "A Sharmagiddle!", "score": 0},
-      ],
-    },
-    {
-      "question": "Who made this?",
-      "answers": [
-        {"text": "A blacksmith!", "score": 0},
-        {"text": "A whiteknight!", "score": 0},
-        {"text": "A redneck!", "score": 1},
-      ],
-    },
-    {
-      "question": "How is this?",
-      "answers": [
-        {"text": "Awesome!", "score": 0},
-        {"text": "Awful!", "score": 1},
-        {"text": "Amazing!", "score": 0},
-      ],
-    },
-  ];
-  var _cycle = 0;
-  var _score = 0;
-
-  void _buttonPressed(int score) {
-    // if we do this:
-    //_cycle = (_cycle + 1) % _questions.length;
-    // ... the text will NOT change!
-
-    setState(() {
-      // because we place this IN HERE this works.
-      _cycle += 1;
-      _score += score;
-    });
-
-    print("cycle: $_cycle");
-    print("score: $_score");
-  }
-
-  void _restartQuiz() {
-    setState(() {
-      _cycle = 0;
-      _score = 0;
-    });
-  }
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
-      home: CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(
-          middle: Text('Me Title'),
-        ),
-        child: SafeArea(
-          child: _cycle < _questions.length
-              ? Quiz(
-                  question: _questions[_cycle],
-                  handler: _buttonPressed,
-                )
-              : QuizResult(restartHandler: _restartQuiz, totalScore: _score),
+      title: "Flutter App",
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text('Flutter App'),
+      ),
+      child: SafeArea(
+        child: Center(
+          child: Text("Widget Playground"),
         ),
       ),
     );
