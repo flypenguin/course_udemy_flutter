@@ -23,8 +23,13 @@ class MyHomePage extends StatelessWidget {
         middle: Text('Flutter App'),
       ),
       child: SafeArea(
-        child: Center(
-          child: Text("Widget Playground"),
+        child: Column(
+          children: <Widget>[
+            // card takes the exact size of the child: widget
+            Card(child: Text("card 1")),
+            // so to style this we have to modify the child: format
+            Card(child: Text("card 2")),
+          ],
         ),
       ),
     );
