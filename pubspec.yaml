@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^0.1.2
-  intl: ^0.15.7
+  intl: ^0.16.1
   provider: ^2.0.0+1
   shrine_images: ^1.0.0
 
