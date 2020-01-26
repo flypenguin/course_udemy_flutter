@@ -40,6 +40,9 @@ class MyHomePage extends StatelessWidget {
         date: DateTime.now()),
   ];
 
+  final amountController = TextEditingController();
+  final purposeController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -50,46 +53,83 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
-          children: transactions.map((t) {
-            return Card(
-              color: Colors.lime,
-              child: Row(
+          children: <Widget>[
+            Container(
+                width: double.infinity,
+                child: Card(
+                  color: Colors.blue,
+                  child: Text("CHART"),
+                )),
+            Container(
+              width: double.infinity,
+              child: Column(
                 children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.all(15),
-                    padding: EdgeInsets.all(10),
-                    height: 60,
-                    width: 80,
-                    alignment: Alignment.centerRight,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.purple,
-                        width: 2,
-                      ),
-                    ),
-                    child: Text(
-                      t.amount.toStringAsFixed(2),
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.purple,
-                      ),
+                  Card(
+                    child: TextField(
+                      controller: purposeController,
+                      decoration: InputDecoration(labelText: "Purpose"),
                     ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        t.title,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Text(t.date.toString()),
-                    ],
+                  Card(
+                    child: TextField(
+                      controller: amountController,
+                      decoration: InputDecoration(labelText: "Amount"),
+                    ),
                   ),
+                  CupertinoButton(
+                    child: Text("Add transaction"),
+                    onPressed: () {
+                      print(purposeController.text +
+                          ": " +
+                          amountController.text);
+                    },
+                  )
                 ],
               ),
-            );
-          }).toList(),
+            ),
+            Column(
+              children: transactions.map((t) {
+                return Card(
+                  color: Colors.lime,
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.all(15),
+                        padding: EdgeInsets.all(10),
+                        height: 60,
+                        width: 80,
+                        alignment: Alignment.centerRight,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.purple,
+                            width: 2,
+                          ),
+                        ),
+                        child: Text(
+                          t.amount.toStringAsFixed(2),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.purple,
+                          ),
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            t.title,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(DateFormat.yMMMMEEEEd().format(t.date)),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            )
+          ],
         ),
       ),
     );
